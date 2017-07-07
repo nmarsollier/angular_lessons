@@ -1,0 +1,67 @@
+
+<!-- Visualizacion condicional de sectores de una pagina *ngIf 
+	es una expresion booleana que se ejecuta en el contexto del componente -->
+<h1 *ngIf="!mascota.perdida">Detalles de la Mascota</h1><br />
+Nombre : {{ mascota.nombre }}<br />
+Fecha de Nacimiento : {{ mascota.fechaNacimiento }}<br />
+Ciudad : {{ mascota.ciudad }} <br />
+Sexo : {{ mascota.sexo }} <br />
+Perdida : {{ mascota.perdida }} <br />     
+     
+<!-- [(ngModel)] nos permite bindar doblemente con atributos del modelo -->
+Nombre de la mascota : <input [(ngModel)]="mascota.nombre" type="text"><br />
+
+Fecha de nacimiento : <input [(ngModel)]="mascota.fechaNacimiento" type="date" ><br />
+
+Ciudad donde vive :  
+	<select [(ngModel)]="mascota.ciudad" >
+	
+		<!--  Para iterar usamos *ngFor, este atributo va a repetir la etiqueta donde se aplica 
+		      tantas veces como se desee -->
+		<option *ngFor="let item of ciudades; let i = index" [value]="item.id" >{{i}} = {{item.nombre}}</option>
+	</select> <br />
+
+Ciudades Pares	
+	<select [(ngModel)]="mascota.ciudad" >
+		<option *ngFor="let item of ciudades; let i = index" [value]="item.id" >{{i}} = {{item.nombre}}</option>
+	</select> <br />
+
+Las directivas ngIf y ngFor son estructurales *, solo se pueden usar una vez en el componente.
+Si tenemos que usar 2 , debemos usar el template de ngFor
+	<template ngFor let-elem [ngForOf]="ciudades">
+		<li *ngIf="elem.id % 2 == 0"> {{elem.nombre}} </li>
+	</template>
+
+Sexo :  <select [(ngModel)]="mascota.sexo" >
+			<option value="" *ngIf="!mascota.sexo">Seleccionar Sexo</option>
+			<option *ngFor="let item of sexos" [value]="item.id" >{{item.nombre}}</option>
+		</select> <br />
+
+Esta Perdida ? : <input [(ngModel)]="mascota.perdida" type="checkbox" > <br />
+
+
+<BR />
+
+<div  [class]="atributoEstilo">
+Un estilo aplicado a travez del contenido de una propiedad
+</div>
+<div  [class.estiloBonito]="aplicarEstiloBonito">
+Un estilo aplicado a travez de una propiedad booleana
+</div>
+<div  [ngClass]="mapasDeClases">
+Un estilo aplicado a travez de mapa de clases
+</div>
+<div [style.backgroundColor]="colorFondo" >
+Un estilo aplicado especifico
+</div>
+
+<!-- ngStyle funcion con una mapa de estilos, similar a ngClass
+     Tambien se podria usar una llamada a una funcion, es una expresion como todos los demas -->
+<div [ngStyle]="estilosMapa" >
+Un estilo aplicado especifico mapas de estilo
+</div>
+     
+     
+<!-- Composicion de Componentes -->
+<app-composicion [titulo]="tiluloAComponer" ></app-composicion>
+<app-composicion titulo="Titulo Literal" (clickPorEvento)="limpiarPorEvento()" ></app-composicion>

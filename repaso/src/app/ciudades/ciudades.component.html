@@ -1,0 +1,17 @@
+<p>Ciudades</p>
+
+<div *ngIf="ciudades" class="container">
+	<table>
+		<thead>
+			<tr>
+				<th>Ciudad</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let item of ciudades">
+				<td>{{item.name}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+

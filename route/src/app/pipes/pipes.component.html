@@ -1,0 +1,50 @@
+
+<!-- Los filters funcionan del mismo modo que los pipes de linux, con el caracter |  
+
+	Entre los filtros mas simples tenemos : uppercase, lowercase, currency, number 
+-->
+Nombre en maysculas: {{ mascota.nombre | uppercase }}
+<br />
+
+<!--  el filter date permite multiples variantes tomando el locale del browser, ejemplos :  -->
+
+
+Fecha de Nacimiento : {{ mascota.fechaNacimiento | date:'medium'}}
+<br />
+Fecha de Nacimiento : {{ mascota.fechaNacimiento | date:'short'}}
+<br />
+
+<!--  Se puede especificar incluso el formato deseado -->
+
+Fecha de Nacimiento : {{ mascota.fechaNacimiento | date:'d/M/yyyy'}}
+<br />
+
+<!-- El filtro limitTo permite tomar los primeros caracteres de una expresion, limitando el valor.
+     Los filtros tambien pueden concatenarse del mismo modo que linux  -->
+Ciudad : {{ mascota.ciudad.nombre | truncate:5 | uppercase }}
+<br />
+
+<!-- El filtro filter permite filtrar por contenido en texto de una propiedad en particular -->
+Mostrar ciudades con la letra i : {{ ciudades | ciudadNombreFilter:'i'}}
+<br />
+
+Sexos ordenados : {{ sexos | orderBy: 'nombre' | json}}
+<br />
+
+
+<!-- El filter number permite agrega un parametro que es la cantidad de decimales, el numero es redondeado -->
+Precio : {{ mascota.precio | round: 2 }}
+<br />
+
+<!-- Utilizar un filtro propio -->
+Un filtro personalizado : {{mascota.nombre | capitalizeInverse }}
+<br />
+
+
+
+Ciudad donde vive :
+<select [(ngModel)]="mascota.ciudad">
+	<option *ngFor="let item of (ciudades | ciudadNombreFilter:'i')" [value]="item.id" >{{item.nombre}}</option>
+</select>
+<br />
+

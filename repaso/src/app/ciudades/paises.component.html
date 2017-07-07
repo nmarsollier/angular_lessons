@@ -1,0 +1,17 @@
+<p>Paises</p>
+
+<div class="container">
+	<!-- Definimos un select que va a bindear el item.alpha3Code a pais -->
+	<select [(ngModel)]="pais">
+		<option *ngFor="let item of paises" [value]="item.alpha3Code">{{item.name}}</option>
+	</select> 
+	
+	<br />
+	
+	<!-- Le pasamos como paramtro el pais -->
+	<a *ngIf="pais" [routerLink]="['/ciudades/' + pais]">Ver Ciudades</a>
+</div>
+
+<BR /><BR />
+
+

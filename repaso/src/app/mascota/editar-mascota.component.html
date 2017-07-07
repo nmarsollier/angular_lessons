@@ -1,0 +1,68 @@
+<div class="container" *ngIf="_mascota" >
+	<h1>Mascota</h1>
+	<!-- ngSubmit va a procesar el submit del form
+	     para prevenir que el browser realice validaciones se pone novalidate 
+	     f nos va a dar un 'puntero' al formulario -->
+	<form (ngSubmit)="onSubmit()" novalidate #f="ngForm">
+	
+		<!-- class=form-group es un estilo de bootstrap que vamos a utilizar para que los forms sean mas bonitos -->
+		<div class="form-group">
+		
+			<!-- Un ejemplo de expresiones, si el id es nulo es porque estamos creando un nuevo objeto -->
+			<label>Id:</label> {{_mascota.id ? _mascota.id : 'Nueva' }}
+		</div>
+		
+		<div class="form-group">
+			<label>Nombre:</label> 
+			
+			<!-- Con required estamos poniendo una validacion de campo, esta validacion es tomada 
+				en cuenta por angular 2, vemos que cuando falla la validacion angular pone una
+				propiedad valid al objeto que nos permite personalizar validaciones.
+				A su vez se agrega el estilo css .ng-valid al control, ver styles.css  -->
+			<input type="text" class="form-control" name="nombre"
+				[(ngModel)]="_mascota.nombre" required>
+				
+			<!-- Podemos mostrar algun error personalizado dependiendo del error que queremos analizar
+				tpuched es un valor que se define cuando el elemento ha sido editado -->
+			<div *ngIf="f.controls.nombre?.invalid && f.controls.nombre?.touched" class="error">
+			    Dato invalido
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label>Fecha de Nacimiento:</label> 
+			
+			<!-- ng2-datepicker es una libreria de terceros, ver como se importa el modulo 
+				 Definimos un pipe para formateo para que el control tome bien la fecha, que es un string
+				 Separamos ngModel de ngModelChange para que podamos bindear por separado cada evento 
+				 en options definimos format con una expresion a diferencia de utilizar una property del controller-->
+			<ng2-datepicker class="form-control"  name="fechaNacimiento" [options]="{ format: 'DD/MM/YYYY'}"
+				[ngModel]="_mascota.fechaNacimiento | datePicker" 
+				(ngModelChange)="_mascota.fechaNacimiento=$event.formatted"></ng2-datepicker>
+				
+							
+			<!-- Para los errores que vienen desde el servidor usamos la propiedad errors del componente, en forma artesanal -->
+			<div *ngIf="errors?.fechaNacimiento" class="error">
+			    {{errors.fechaNacimiento}}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label>Descripcion:</label> 
+			<!-- Otra validacion util puede ser minLength y maxLength -->
+			<input type="text" class="form-control" name="descripcion"
+				[(ngModel)]="_mascota.descripcion" required [minlength]="3" [maxLength]="60">
+				
+			<!-- Si queremos ver un error puntual del validador, podemos verlo en errors -->
+			<div *ngIf="f.controls.descripcion?.errors?.minlength && f.controls.descripcion?.touched" class="error">
+			    Minimo 3 caracters, maximo 60
+			</div>
+		</div>
+
+		<!-- tres botones, uno de ellos, el que no tiene click, es el submit del formulario,
+			los otros son acciones comunes, procesadas por funciones del controller -->
+		<button class="btn btn-default" (click)="onCancel()" >Cancelar</button>
+		<button class="btn btn-warning" *ngIf="_mascota.id" (click)="onDelete()">Eliminar</button>
+		<button class="btn btn-success" [disabled]="f.invalid">Guardar</button>
+	</form>
+</div>

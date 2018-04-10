@@ -15,10 +15,10 @@ export class CiudadNombreFilter implements PipeTransform {
 })
 export class CapitalizeInverseFilter implements PipeTransform {
   transform(value: string, args: any[]): any {
-    if(!value) {
+    if (!value) {
       return '';
     }
-    return value[0].toLowerCase() + value.slice(1).toUpperCase();;
+    return value[0].toLowerCase() + value.slice(1).toUpperCase();
   }
 }
 

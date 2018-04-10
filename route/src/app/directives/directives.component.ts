@@ -31,8 +31,8 @@ export class DirectivesComponent implements OnInit {
 
   constructor() {
   }
-  
-  // OnInit es el lugar preferido para inicializar variables 
+
+  // OnInit es el lugar preferido para inicializar variables
   ngOnInit() {
     this.ciudades = [
       { id: 0, nombre: 'Definir Ciudad' },

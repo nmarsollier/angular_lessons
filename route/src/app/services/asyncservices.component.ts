@@ -4,7 +4,7 @@ import { CiudadesService, Ciudad } from './ciudades.service'
 @Component({
   selector: 'app-async-services',
   template: `
-      Ciudades :  
+      Ciudades :
       <select [(ngModel)]="ciudad" >
         <option *ngFor="let item of ciudades" [value]="item.id" >{{item.nombre}}</option>
       </select> <br />`
@@ -14,7 +14,7 @@ export class AsyncServicesComponent implements OnInit {
 
   ciudad: Ciudad;
 
-  // Notar la inyeccion de dependencia, y tambien notar que si 
+  // Notar la inyeccion de dependencia, y tambien notar que si
   // pones private, entonces ese parametro es considerado una
   // propiedad del Componente, puede no ponerse, pero no seria parte
   // del objeto

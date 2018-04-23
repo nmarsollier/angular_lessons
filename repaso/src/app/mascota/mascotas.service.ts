@@ -32,13 +32,13 @@ export class MascotasService {
     // estamos simulando las validaciones desde el servidor
     const errors: any = {};
     if (!m.fechaNacimiento) {
-      errors.fechaNacimiento = "Debe especificar la fecha de nacimiento";
+      errors.fechaNacimiento = 'Debe especificar la fecha de nacimiento';
     }
     if (!m.nombre) {
-      errors.nombre = "Debe especificar el nombre de la mascota";
+      errors.nombre = 'Debe especificar el nombre de la mascota';
     }
     if (!m.descripcion) {
-      errors.descripcion = "Debe especificar la descripcion de la mascota";
+      errors.descripcion = 'Debe especificar la descripcion de la mascota';
     }
 
     if (Object.keys(errors).length > 0) {
@@ -60,7 +60,6 @@ export class MascotasService {
     }
     return m;
   }
-
 
   eliminarMascota(m: Mascota): Promise<Mascota> {
     return Promise.resolve(this.eliminarMascotaInternal(m));

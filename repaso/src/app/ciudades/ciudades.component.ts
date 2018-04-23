@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CiudadesComponent implements OnInit {
   ciudades: Ciudad[];
   codigoPais: string;
+  detalles: any;
 
   constructor(private ciudadesService: CiudadesService, private route: ActivatedRoute) { }
 
@@ -18,10 +19,10 @@ export class CiudadesComponent implements OnInit {
     // El servicio route.params, permite suscribirnos a eventos donde podemos recibir los parametros
     this.route.params.subscribe(params => {
       this.codigoPais = params['pais'];
-      
+
       // Si el codigo de pais tiene un valor, buscamos las ciudades en forma asincrona
       if (this.codigoPais) {
-         this.ciudadesService.getCiudades(this.codigoPais).then(d => this.ciudades = d);
+        this.ciudadesService.getCiudades(this.codigoPais).then(d => this.ciudades = d);
       }
     });
   }

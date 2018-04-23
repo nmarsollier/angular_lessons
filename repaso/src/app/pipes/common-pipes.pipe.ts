@@ -4,7 +4,7 @@ import * as moment from 'moment';
 
 /*
  * Dado que ng2-datepicker no permite poner como valor un string
- * hacemos este pipe que convierte de string a DateModel, que es el objeto que 
+ * hacemos este pipe que convierte de string a DateModel, que es el objeto que
  * entiende.
  */
 @Pipe({
@@ -15,15 +15,15 @@ export class DatePickerPipe implements PipeTransform {
   transform(value: string, args?: any): any {
     return new DateModel(this.toIDateModel(value));
   }
-  
+
   private toIDateModel(value: string): any {
-    let d = moment(value, "DD/MM/YYYY");
+    const d = moment(value, 'DD/MM/YYYY');
     return {
-        day: d.date(),
-        month: d.month(),
-        year: d.year(),
-        formatted: value,
-        momentObj: d
+      day: d.date(),
+      month: d.month(),
+      year: d.year(),
+      formatted: value,
+      momentObj: d
     }
   }
 }

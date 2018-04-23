@@ -9,7 +9,7 @@ import { DatePickerOptions, DateModel } from 'ng2-datepicker';
   templateUrl: './editar-mascota.component.html'
 })
 export class EditarMascotaComponent implements OnInit {
-  
+
   // Define una propiedad del tag, como esta propiedad no quiero que se
   // bindee directamente con este formulario , vamos a crear una copia
   // del objeto bindeado, esto lo podemos hacer sobreescribieno los
@@ -30,7 +30,7 @@ export class EditarMascotaComponent implements OnInit {
   // este es el objeto que vamos a bindear en este formulario de edicion
   _mascota: Mascota;
   errors: any;
-  
+
   constructor(private mascotasService: MascotasService) { }
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class EditarMascotaComponent implements OnInit {
     this.mascotasService.guardarMascota(this._mascota).then(m => {
       this._mascota = undefined;
       this.onMascotaUpdate.emit();
-    }, e=> {
+    }, e => {
       this.errors = e;
     });
   }

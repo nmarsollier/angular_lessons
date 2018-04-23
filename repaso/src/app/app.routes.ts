@@ -9,8 +9,8 @@ import { ListaMascotasComponent } from './mascota/lista-mascotas.component';
 // Route Configuration
 export const routes: Routes = [
   { path: 'mascotas', component: ListaMascotasComponent },
-  { path: 'ciudades/:pais', component: CiudadesComponent},
-  { path: 'paises', component: PaisesComponent}
+  { path: 'ciudades/:pais', component: CiudadesComponent },
+  { path: 'paises', component: PaisesComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

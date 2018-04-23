@@ -30,7 +30,7 @@ export class MascotasService {
 
   guardarMascota(m: Mascota): Promise<Mascota> {
     // estamos simulando las validaciones desde el servidor
-    const errors:any = {};
+    const errors: any = {};
     if (!m.fechaNacimiento) {
       errors.fechaNacimiento = "Debe especificar la fecha de nacimiento";
     }
@@ -47,7 +47,7 @@ export class MascotasService {
       return Promise.resolve(this.guardarMascotaInternal(m));
     }
   }
-  
+
   private guardarMascotaInternal(m: Mascota): Mascota {
     if (!m.id) {
       m.id = this.mascotas.length + 1;
@@ -66,7 +66,7 @@ export class MascotasService {
     return Promise.resolve(this.eliminarMascotaInternal(m));
 
   }
-  
+
   private eliminarMascotaInternal(m: Mascota): Mascota {
     const index = this.mascotas.findIndex(x => m.id === x.id);
     if (index >= 0) {

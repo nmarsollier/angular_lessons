@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing } from './app.routes';
 import { DatePickerModule } from 'ng2-datepicker';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { CiudadesComponent } from './ciudades/ciudades.component';
@@ -24,6 +25,7 @@ import { DatePickerPipe } from './pipes/common-pipes.pipe';
     PaisesComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     DatePickerModule,
     FormsModule,

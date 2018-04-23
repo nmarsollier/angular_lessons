@@ -3,7 +3,9 @@
 	<table cellspacing='0'>
 		<thead>
 			<tr>
-				<th colspan=4><div [style.font-size.em]='2'>Mascotas</div></th>
+				<th colspan=4>
+					<div [style.font-size.em]='2'>Mascotas</div>
+				</th>
 			</tr>
 			<tr>
 				<th>Id</th>
@@ -14,8 +16,7 @@
 		</thead>
 		<tbody>
 			<!-- ngFor en el click del renglon se ejecuta un metodo, se le pasa la mascota actual -->
-			<tr *ngFor="let mascota of mascotas"
-				(click)="seleccionarMascota(mascota)">
+			<tr *ngFor="let mascota of mascotas" (click)="seleccionarMascota(mascota)">
 				<td>{{mascota.id}}</td>
 				<td>{{mascota.nombre}}</td>
 				<td>{{mascota.fechaNacimiento}}</td>
@@ -27,7 +28,7 @@
 </div>
 
 <!-- app-editar-mascota nos permite editar la mascota seleccionada
-	solo esta visible si mascotaSeleccionada tiene un valor valido 
+	solo esta visible si mascotaSeleccionada tiene un valor valido
 	se realiza un bindeo con este componente y se lee el evento onMascotaUpdate que nos
 	permite actualizar el listado si hay algun cambio -->
 <app-editar-mascota [mascota]="mascotaSeleccionada" (onMascotaUpdate)="updateMascotas()"></app-editar-mascota>

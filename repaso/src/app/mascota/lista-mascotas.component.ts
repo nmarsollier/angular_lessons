@@ -32,14 +32,14 @@ export class ListaMascotasComponent implements OnInit {
     this.mascotasService.getMascotas()
       .then(m => this.mascotas = m);
   }
-  
+
   // Crear una nueva mascota, se crea el objeto vacio
   nuevaMascota() {
     this.mascotaSeleccionada = {
-      id:undefined,
-      nombre:"",
-      fechaNacimiento:"",
-      descripcion:""
+      id: undefined,
+      nombre: '',
+      fechaNacimiento: '',
+      descripcion: ''
     }
   }
 }
